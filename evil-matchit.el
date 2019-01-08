@@ -365,11 +365,13 @@ If IS-FORWARD is t, jump forward; or else jump backward."
       (if where-to-jump-in-theory (goto-char where-to-jump-in-theory))
       (setq b (region-beginning))
       (setq e (region-end))
+      (message "where-to-jump-in-theory=%s e=%s text=%s" where-to-jump-in-theory e (buffer-substring-no-properties b e))
       (goto-char b)
 
       ;; for inner text object, forward a line at the beginning
       (cond
        (is-inner
+        ;; TODO if begin or end is only one line difference or less, need better algorithm
         (forward-line 1)
         (setq b (line-beginning-position)))
        (t
