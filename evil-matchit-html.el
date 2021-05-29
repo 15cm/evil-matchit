@@ -80,10 +80,7 @@ Use CHAR at POSITION."
             (setq position (point))
             (unless (eq (point) (point-max)) (forward-char)))))
 
-      ;; a valid html tag should be like <[^;]
-      (unless (and (eq char ?<)
-                   ;; html tags should not contain " ,;"
-                   (string-match "^<[^ ;,]+$" (evilmi-html--open-tag-candidate position)))
+      (unless (eq char ?<)
         (setq char nil))
 
       ;; is end tag?
